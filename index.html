@@ -1,60 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Do You Love Me?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do You Love Me?</title>
 
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: #ffc0cb;
-            margin: 0;
-            padding: 20px;
-        }
+<style>
+body {
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(270deg, #ff9a9e, #fad0c4, #ffdde1);
+    background-size: 600% 600%;
+    animation: gradientBG 10s ease infinite;
+    overflow: hidden;
+}
 
-        h1 {
-            font-size: 28px;
-            color: #ff1493;
-            margin-top: 40px;
-        }
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
 
-        #container {
-            position: relative;
-            width: 90%;
-            max-width: 350px;
-            height: 220px;
-            margin: 30px auto;
-            border-radius: 20px;
-            background-color: #ffe6f0;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
+h1 {
+    color: #ff1493;
+    margin-top: 40px;
+}
 
-        button {
-            padding: 12px 18px;
-            font-size: 16px;
-            position: absolute;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            border: none;
-            border-radius: 10px;
-            color: white;
-        }
+#container {
+    position: relative;
+    width: 90%;
+    max-width: 350px;
+    height: 220px;
+    margin: 30px auto;
+    border-radius: 20px;
+    background-color: rgba(255,255,255,0.6);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
 
-        #yesBtn {
-            left: 20%;
-            top: 60%;
-            transform: translate(-50%, -50%);
-            background-color: #ff69b4;
-        }
+button {
+    padding: 12px 18px;
+    font-size: 16px;
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
 
-        #noBtn {
-            left: 70%;
-            top: 60%;
-            transform: translate(-50%, -50%);
-            background-color: #ff1493;
-        }
-    </style>
+#yesBtn {
+    left: 25%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    background-color: #ff69b4;
+}
+
+#noBtn {
+    left: 75%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    background-color: #ff1493;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #d63384;
+    min-height: 40px;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    color: pink;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-600px);}
+}
+</style>
 </head>
 
 <body>
@@ -66,30 +93,72 @@
     <button id="noBtn">😢 No I don't</button>
 </div>
 
+<div id="message"></div>
+
 <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const container = document.getElementById("container");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const container = document.getElementById("container");
+const message = document.getElementById("message");
 
-    // YES → redirect
-    yesBtn.addEventListener("click", () => {
-        window.location.href = "success.html";
-    });
+// Cute sad messages 😭
+const messages = [
+    "Haww you hate me? 😭",
+    "Are you serious?? 💔",
+    "I thought we had something 😢",
+    "My heart just broke 💔🥺",
+    "Why would you say no 😭",
+    "You're so mean 😞",
+    "I’m crying now 😢💧",
+    "You just shattered my heart 💔",
+    "Please say yes na 🥺",
+    "Don’t do this to me 😭",
+    "I’ll remember this forever 😞",
+    "You really don't love me? 💔",
+    "Okay… I see how it is 😢",
+    "That hurt 😭",
+    "I trusted you 🥺💔"
+];
 
-    // NO → move randomly (works on mobile tap too)
-    function moveButton() {
-        const maxX = container.clientWidth - noBtn.offsetWidth;
-        const maxY = container.clientHeight - noBtn.offsetHeight;
+// YES → redirect
+yesBtn.addEventListener("click", () => {
+    window.location.href = "success.html";
+});
 
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
+// Move NO button + show message
+function moveButton() {
+    const maxX = container.clientWidth - noBtn.offsetWidth;
+    const maxY = container.clientHeight - noBtn.offsetHeight;
 
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
-    }
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
-    noBtn.addEventListener("mouseover", moveButton);
-    noBtn.addEventListener("touchstart", moveButton);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    // Show random sad message
+    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+    message.innerText = randomMsg;
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+// Floating hearts effect 💕
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "100vh";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}, 500);
 </script>
 
 </body>
