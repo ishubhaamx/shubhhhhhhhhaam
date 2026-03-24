@@ -7,7 +7,7 @@
 <style>
 body {
     text-align: center;
-    font-family: Arial, sans-serif; /* ✅ normal font */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
     background: linear-gradient(270deg, #ff9a9e, #fad0c4, #ffdde1);
@@ -63,11 +63,13 @@ button {
     background-color: #ff1493;
 }
 
+/* ✨ Updated compliment style */
 #message {
     margin-top: 20px;
-    font-size: 22px; /* ✅ bigger */
-    font-weight: bold;
-    color: #d63384;
+    font-size: 26px; /* ✅ bigger */
+    font-weight: 600;
+    font-family: 'Segoe UI', sans-serif; /* ✅ nicer font */
+    color: #c2185b;
     min-height: 40px;
 }
 
@@ -102,7 +104,6 @@ const noBtn = document.getElementById("noBtn");
 const container = document.getElementById("container");
 const message = document.getElementById("message");
 
-// Cute sad messages 😭
 const messages = [
     "Haww you hate me? 😭",
     "Are you serious?? 💔",
@@ -121,12 +122,10 @@ const messages = [
     "I trusted you 🥺💔"
 ];
 
-// YES → redirect
 yesBtn.addEventListener("click", () => {
     window.location.href = "success.html";
 });
 
-// Move NO button + show message
 function moveButton() {
     const maxX = container.clientWidth - noBtn.offsetWidth;
     const maxY = container.clientHeight - noBtn.offsetHeight;
@@ -144,7 +143,7 @@ function moveButton() {
 noBtn.addEventListener("mouseover", moveButton);
 noBtn.addEventListener("touchstart", moveButton);
 
-// Floating hearts effect 💕
+// Floating hearts
 setInterval(() => {
     const heart = document.createElement("div");
     heart.classList.add("heart");
@@ -155,9 +154,7 @@ setInterval(() => {
 
     document.body.appendChild(heart);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
+    setTimeout(() => heart.remove(), 5000);
 }, 500);
 </script>
 

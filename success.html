@@ -6,27 +6,38 @@
 
 <style>
 body {
-    text-align: center;
-    font-family: Arial, sans-serif; /* ✅ normal font */
+    font-family: Arial, sans-serif;
     background: linear-gradient(to right, #ff9a9e, #fecfef);
     padding: 20px;
     color: #fff;
 }
 
 h1 {
+    text-align: center;
     margin-top: 50px;
-    font-size: 36px; /* bigger */
-}
-
-p {
-    font-size: 24px; /* bigger compliments */
-    font-weight: bold;
-    margin-top: 20px;
+    font-size: 36px;
 }
 
 .heart {
+    text-align: center;
     font-size: 40px;
     animation: bounce 1s infinite alternate;
+}
+
+/* ✨ Left-side compliments */
+.compliments {
+    margin-top: 30px;
+    text-align: left; /* ✅ drop side */
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.compliments p {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 15px 0;
 }
 
 @keyframes bounce {
@@ -42,11 +53,13 @@ p {
 
 <div class="heart">💘 💕 💖 💞</div>
 
-<p>You just made my whole day 😍</p>
-<p>I knew you loved me 😏💖</p>
-<p>You’re the cutest person ever 🥺💕</p>
-<p>Now I’m smiling like crazy 😆💞</p>
-<p>I’m never letting you go 😌❤️</p>
+<div class="compliments">
+    <p>You just made my whole day 😍</p>
+    <p>I knew you loved me 😏💖</p>
+    <p>You’re the cutest person ever 🥺💕</p>
+    <p>Now I’m smiling like crazy 😆💞</p>
+    <p>I’m never letting you go 😌❤️</p>
+</div>
 
 </body>
 </html>
