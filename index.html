@@ -7,7 +7,7 @@
 <style>
 body {
     text-align: center;
-    font-family: 'Comic Sans MS', cursive;
+    font-family: Arial, sans-serif; /* ✅ normal font */
     margin: 0;
     padding: 20px;
     background: linear-gradient(270deg, #ff9a9e, #fad0c4, #ffdde1);
@@ -65,7 +65,8 @@ button {
 
 #message {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 22px; /* ✅ bigger */
+    font-weight: bold;
     color: #d63384;
     min-height: 40px;
 }
@@ -136,7 +137,6 @@ function moveButton() {
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 
-    // Show random sad message
     const randomMsg = messages[Math.floor(Math.random() * messages.length)];
     message.innerText = randomMsg;
 }
